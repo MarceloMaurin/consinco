@@ -1,0 +1,107 @@
+object frmFabricantes: TfrmFabricantes
+  Left = 445
+  Height = 240
+  Top = 277
+  Width = 320
+  Caption = 'Fabricantes'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.0.6.0'
+  object DBNavigator1: TDBNavigator
+    Left = 24
+    Height = 25
+    Top = 16
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = DataSource1
+    Options = []
+    TabOrder = 0
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 184
+    Top = 48
+    Width = 304
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'idfabricante'
+        FieldName = 'idfabricante'
+      end    
+      item
+        Title.Caption = 'Fabricante'
+        FieldName = 'fabricante'
+      end>
+    DataSource = DataSource1
+    TabOrder = 1
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'idfabricante'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'fabricante'
+        DataType = ftFixedChar
+        Precision = -1
+        Size = 20
+      end>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    SQL.Strings = (
+      'select * from fabricante;'
+    )
+    InsertSQL.Strings = (
+      ' insert into fabricante ( fabricante) values (:fabricante)'
+    )
+    UpdateSQL.Strings = (
+      'update fabricante set fabricante = :fabricante where idfabricante = :idfabricante'
+    )
+    DeleteSQL.Strings = (
+      'delete from fabricante where idfabricante = :idfabricante'
+    )
+    RefreshSQL.Strings = (
+      'select * from modelo'
+    )
+    Params = <>
+    UpdateMode = upWhereAll
+    left = 52
+    top = 84
+    object SQLQuery1idfabricante: TLongintField
+      FieldKind = fkData
+      FieldName = 'idfabricante'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object SQLQuery1fabricante: TStringField
+      FieldKind = fkData
+      FieldName = 'fabricante'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    left = 120
+    top = 88
+  end
+end
