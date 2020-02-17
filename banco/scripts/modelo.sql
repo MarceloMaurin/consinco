@@ -1,4 +1,4 @@
-create table modelo (
-	idmodelo integer primary key,
-	modelo char(20)
+CREATE TABLE "modelo" (
+	"idmodelo"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"modelo"	char(20)
 );

@@ -2,10 +2,10 @@ object frmModelos: TfrmModelos
   Left = 445
   Height = 241
   Top = 180
-  Width = 315
+  Width = 409
   Caption = 'Cadastro de Modelos'
   ClientHeight = 241
-  ClientWidth = 315
+  ClientWidth = 409
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.6.0'
@@ -26,7 +26,7 @@ object frmModelos: TfrmModelos
     DataSource = DataSource1
     Options = []
     TabOrder = 0
-    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbPost, nbCancel]
   end
   object DBGrid1: TDBGrid
     Left = 8
@@ -46,11 +46,31 @@ object frmModelos: TfrmModelos
     DataSource = DataSource1
     TabOrder = 1
   end
+  object btInsere: TButton
+    Left = 320
+    Height = 25
+    Top = 48
+    Width = 75
+    Caption = 'Inserir'
+    OnClick = btInsereClick
+    TabOrder = 2
+  end
+  object btEdita: TButton
+    Left = 321
+    Height = 25
+    Top = 84
+    Width = 75
+    Caption = 'Editar'
+    OnClick = btEditaClick
+    TabOrder = 3
+  end
   object SQLQuery1: TSQLQuery
+    PacketRecords = -1
+    IndexFieldNames = 'idmodelo'
     FieldDefs = <    
       item
         Name = 'idmodelo'
-        DataType = ftAutoInc
+        DataType = ftInteger
         Precision = -1
       end    
       item
@@ -59,10 +79,7 @@ object frmModelos: TfrmModelos
         Precision = -1
         Size = 20
       end>
-    AfterDelete = SQLQuery1AfterDelete
     AfterPost = SQLQuery1AfterPost
-    AfterRefresh = SQLQuery1AfterRefresh
-    BeforeDelete = SQLQuery1BeforeDelete
     BeforeEdit = SQLQuery1BeforeEdit
     BeforeInsert = SQLQuery1BeforeInsert
     Database = frmmain.SQLite3Connection1
@@ -80,34 +97,25 @@ object frmModelos: TfrmModelos
       'delete from modelo where idmodelo = :idmodelo'
     )
     RefreshSQL.Strings = (
-      'select * from modelo'
+      'select * from modelo where idmodelo = :idmodelo'
     )
     Params = <>
-    UpdateMode = upWhereAll
+    ParamCheck = False
+    UpdateMode = upWhereChanged
     left = 24
     top = 56
-    object SQLQuery1idmodelo: TLongintField
-      FieldKind = fkData
-      FieldName = 'idmodelo'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object SQLQuery1modelo: TStringField
-      FieldKind = fkData
-      FieldName = 'modelo'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
   end
   object DataSource1: TDataSource
     DataSet = SQLQuery1
     left = 80
     top = 56
+  end
+  object qryaux: TSQLQuery
+    FieldDefs = <>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    Params = <>
+    left = 217
+    top = 116
   end
 end

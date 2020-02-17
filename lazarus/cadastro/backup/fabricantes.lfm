@@ -2,11 +2,12 @@ object frmFabricantes: TfrmFabricantes
   Left = 445
   Height = 240
   Top = 277
-  Width = 320
+  Width = 426
   Caption = 'Fabricantes'
   ClientHeight = 240
-  ClientWidth = 320
+  ClientWidth = 426
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   LCLVersion = '2.0.6.0'
   object DBNavigator1: TDBNavigator
     Left = 24
@@ -25,7 +26,7 @@ object frmFabricantes: TfrmFabricantes
     DataSource = DataSource1
     Options = []
     TabOrder = 0
-    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbPost, nbCancel]
   end
   object DBGrid1: TDBGrid
     Left = 8
@@ -39,13 +40,33 @@ object frmFabricantes: TfrmFabricantes
         FieldName = 'idfabricante'
       end    
       item
-        Title.Caption = 'Fabricante'
+        Title.Caption = 'fabricante'
         FieldName = 'fabricante'
       end>
     DataSource = DataSource1
     TabOrder = 1
   end
+  object btInsere: TButton
+    Left = 320
+    Height = 25
+    Top = 48
+    Width = 75
+    Caption = 'Inserir'
+    OnClick = btInsereClick
+    TabOrder = 2
+  end
+  object btEdita: TButton
+    Left = 321
+    Height = 25
+    Top = 84
+    Width = 75
+    Caption = 'Editar'
+    OnClick = btEditaClick
+    TabOrder = 3
+  end
   object SQLQuery1: TSQLQuery
+    PacketRecords = -1
+    IndexFieldNames = 'idfabricante'
     FieldDefs = <    
       item
         Name = 'idfabricante'
@@ -58,6 +79,10 @@ object frmFabricantes: TfrmFabricantes
         Precision = -1
         Size = 20
       end>
+    AfterPost = SQLQuery1AfterPost
+    BeforeDelete = SQLQuery1BeforeDelete
+    BeforeInsert = SQLQuery1BeforeInsert
+    BeforePost = SQLQuery1BeforePost
     Database = frmmain.SQLite3Connection1
     Transaction = frmmain.SQLTransaction1
     SQL.Strings = (
@@ -67,40 +92,30 @@ object frmFabricantes: TfrmFabricantes
       ' insert into fabricante ( fabricante) values (:fabricante)'
     )
     UpdateSQL.Strings = (
-      'update fabricante set fabricante = :fabricante where idfabricante = :idfabricante'
+      'update fabricante set fabricante = :fabricante where idfabricante = :OLD_idfabricante'
     )
     DeleteSQL.Strings = (
-      'delete from fabricante where idfabricante = :idfabricante'
+      'delete from fabricante where idfabricante = :OLD_idfabricante'
     )
     RefreshSQL.Strings = (
-      'select * from modelo'
+      'select * from fabricante where idfabricante'
     )
     Params = <>
     UpdateMode = upWhereAll
     left = 52
     top = 84
-    object SQLQuery1idfabricante: TLongintField
-      FieldKind = fkData
-      FieldName = 'idfabricante'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object SQLQuery1fabricante: TStringField
-      FieldKind = fkData
-      FieldName = 'fabricante'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
   end
   object DataSource1: TDataSource
     DataSet = SQLQuery1
     left = 120
     top = 88
+  end
+  object qryaux: TSQLQuery
+    FieldDefs = <>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    Params = <>
+    left = 245
+    top = 144
   end
 end

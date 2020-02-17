@@ -4,9 +4,28 @@ object frmmain: Tfrmmain
   Top = 145
   Width = 320
   Caption = 'Cadastro de Maquinas'
+  ClientHeight = 220
+  ClientWidth = 320
   Menu = MainMenu1
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   LCLVersion = '2.0.6.0'
+  object Label1: TLabel
+    Left = 184
+    Height = 15
+    Top = 200
+    Width = 38
+    Caption = 'Versão:'
+    ParentColor = False
+  end
+  object lbversao: TLabel
+    Left = 233
+    Height = 15
+    Top = 201
+    Width = 15
+    Caption = '0.2'
+    ParentColor = False
+  end
   object MainMenu1: TMainMenu
     left = 78
     top = 65
@@ -32,9 +51,20 @@ object frmmain: Tfrmmain
         OnClick = MenuItem4Click
       end
     end
+    object MenuItem7: TMenuItem
+      Caption = 'Relatórios'
+      object MenuItem8: TMenuItem
+        Caption = 'Categoria'
+        OnClick = MenuItem8Click
+      end
+      object MenuItem9: TMenuItem
+        Caption = 'Estoque'
+        OnClick = MenuItem9Click
+      end
+    end
   end
   object SQLite3Connection1: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     DatabaseName = 'C:\consinco\lazarus\cadastro\prova.db'
     KeepConnection = False
@@ -43,7 +73,8 @@ object frmmain: Tfrmmain
     top = 144
   end
   object SQLTransaction1: TSQLTransaction
-    Active = True
+    Active = False
+    Action = caCommit
     Database = SQLite3Connection1
     left = 264
     top = 144

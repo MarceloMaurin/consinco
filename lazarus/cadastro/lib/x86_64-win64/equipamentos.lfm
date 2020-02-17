@@ -1,31 +1,31 @@
 object frmEquipamentos: TfrmEquipamentos
   Left = 257
-  Height = 304
+  Height = 376
   Top = 145
-  Width = 456
+  Width = 730
   Caption = 'Cadastro de Equipamentos'
-  ClientHeight = 304
-  ClientWidth = 456
+  ClientHeight = 376
+  ClientWidth = 730
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.6.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 304
+    Height = 376
     Top = 0
-    Width = 456
+    Width = 730
     ActivePage = tsPesquisa
     Align = alClient
     TabIndex = 0
     TabOrder = 0
     object tsPesquisa: TTabSheet
       Caption = 'Pesquisa'
-      ClientHeight = 276
-      ClientWidth = 448
+      ClientHeight = 348
+      ClientWidth = 722
       object DBNavigator1: TDBNavigator
-        Left = 16
+        Left = 240
         Height = 25
-        Top = 8
+        Top = 88
         Width = 241
         BevelOuter = bvNone
         ChildSizing.EnlargeHorizontal = crsScaleChilds
@@ -39,15 +39,24 @@ object frmEquipamentos: TfrmEquipamentos
         DataSource = DataSource1
         Options = []
         TabOrder = 0
-        VisibleButtons = [nbFirst, nbNext, nbLast, nbInsert, nbDelete, nbCancel, nbRefresh]
+        VisibleButtons = [nbFirst, nbNext, nbLast, nbDelete, nbCancel, nbRefresh]
       end
       object DBGrid1: TDBGrid
-        Left = 6
-        Height = 236
-        Top = 40
-        Width = 712
+        Left = 0
+        Height = 228
+        Top = 120
+        Width = 722
+        Align = alBottom
         Color = clWindow
         Columns = <        
+          item
+            Title.Caption = 'descricao'
+            FieldName = 'descricao'
+          end        
+          item
+            Title.Caption = 'nroserie'
+            FieldName = 'nroserie'
+          end        
           item
             Title.Caption = 'idcadmaq'
             FieldName = 'idcadmaq'
@@ -61,41 +70,92 @@ object frmEquipamentos: TfrmEquipamentos
             FieldName = 'dtsaida'
           end        
           item
-            Title.Caption = 'idmodelo'
-            FieldName = 'idmodelo'
-          end        
-          item
-            Title.Caption = 'modelo'
-            FieldName = 'modelo'
-          end        
-          item
             Title.Caption = 'idfabricante'
             FieldName = 'idfabricante'
           end        
           item
-            Title.Caption = 'fabricante'
-            FieldName = 'fabricante'
-          end        
-          item
-            Title.Caption = 'nroserie'
-            FieldName = 'nroserie'
+            Title.Caption = 'idmodelo'
+            FieldName = 'idmodelo'
           end        
           item
             Title.Caption = 'idcategoria'
             FieldName = 'idcategoria'
-          end        
-          item
-            Title.Caption = 'descricao'
-            FieldName = 'descricao'
           end>
         DataSource = DataSource1
         TabOrder = 1
       end
+      object btInserir: TButton
+        Left = 512
+        Height = 25
+        Top = 88
+        Width = 75
+        Caption = 'Inserir'
+        OnClick = btInserirClick
+        TabOrder = 2
+      end
+      object btEditar: TButton
+        Left = 600
+        Height = 25
+        Top = 88
+        Width = 75
+        Caption = 'Editar'
+        OnClick = btEditarClick
+        TabOrder = 3
+      end
+      object Button1: TButton
+        Left = 511
+        Height = 25
+        Top = 14
+        Width = 75
+        Caption = 'Pesquisar'
+        OnClick = Button1Click
+        TabOrder = 4
+      end
+      object Label2: TLabel
+        Left = 6
+        Height = 15
+        Top = 14
+        Width = 54
+        Caption = 'Categoria:'
+        ParentColor = False
+      end
+      object dbcbcategoria: TDBLookupComboBox
+        Left = 6
+        Height = 23
+        Top = 32
+        Width = 148
+        KeyField = 'idcategoria'
+        ListField = 'descricao'
+        ListFieldIndex = 0
+        ListSource = dspcategoria
+        LookupCache = False
+        TabOrder = 5
+      end
+      object Label8: TLabel
+        Left = 168
+        Height = 15
+        Top = 14
+        Width = 55
+        Caption = 'Fabricante'
+        ParentColor = False
+      end
+      object dbcbfabricante: TDBLookupComboBox
+        Left = 168
+        Height = 23
+        Top = 32
+        Width = 148
+        KeyField = 'idfabricante'
+        ListField = 'fabricante'
+        ListFieldIndex = 0
+        ListSource = dspfabricante
+        LookupCache = False
+        TabOrder = 6
+      end
     end
     object tsEdit: TTabSheet
       Caption = 'Alteração'
-      ClientHeight = 276
-      ClientWidth = 448
+      ClientHeight = 348
+      ClientWidth = 722
       TabVisible = False
       object Label1: TLabel
         Left = 8
@@ -116,33 +176,13 @@ object frmEquipamentos: TfrmEquipamentos
         NumGlyphs = 1
         MaxLength = 0
         TabOrder = 0
-        Text = 'DBDateEdit1'
-      end
-      object DBDateEdit2: TDBDateEdit
-        Left = 128
-        Height = 23
-        Top = 32
-        Width = 103
-        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-        DateOrder = doNone
-        ButtonWidth = 23
-        NumGlyphs = 1
-        MaxLength = 0
-        TabOrder = 1
-        Text = 'DBDateEdit2'
-      end
-      object Label2: TLabel
-        Left = 128
-        Height = 15
-        Top = 14
-        Width = 46
-        Caption = 'Dt Saida:'
-        ParentColor = False
+        DataField = 'dtentrada'
+        DataSource = DataSource1
       end
       object Label3: TLabel
         Left = 6
         Height = 15
-        Top = 64
+        Top = 104
         Width = 41
         Caption = 'Modelo'
         ParentColor = False
@@ -150,7 +190,7 @@ object frmEquipamentos: TfrmEquipamentos
       object DBLookupComboBox1: TDBLookupComboBox
         Left = 6
         Height = 23
-        Top = 77
+        Top = 117
         Width = 164
         DataField = 'idmodelo'
         DataSource = DataSource1
@@ -159,12 +199,12 @@ object frmEquipamentos: TfrmEquipamentos
         ListFieldIndex = 0
         ListSource = dsmodelo
         LookupCache = False
-        TabOrder = 2
+        TabOrder = 3
       end
       object Label4: TLabel
         Left = 6
         Height = 15
-        Top = 104
+        Top = 144
         Width = 55
         Caption = 'Fabricante'
         ParentColor = False
@@ -172,7 +212,7 @@ object frmEquipamentos: TfrmEquipamentos
       object DBLookupComboBox2: TDBLookupComboBox
         Left = 7
         Height = 23
-        Top = 117
+        Top = 157
         Width = 164
         DataField = 'idfabricante'
         DataSource = DataSource1
@@ -181,12 +221,12 @@ object frmEquipamentos: TfrmEquipamentos
         ListFieldIndex = 0
         ListSource = dsfabricante
         LookupCache = False
-        TabOrder = 3
+        TabOrder = 4
       end
       object DBLookupComboBox3: TDBLookupComboBox
         Left = 7
         Height = 23
-        Top = 157
+        Top = 197
         Width = 164
         DataField = 'idcategoria'
         DataSource = DataSource1
@@ -195,12 +235,12 @@ object frmEquipamentos: TfrmEquipamentos
         ListFieldIndex = 0
         ListSource = dscategoria
         LookupCache = False
-        TabOrder = 4
+        TabOrder = 5
       end
       object Label5: TLabel
         Left = 6
         Height = 15
-        Top = 144
+        Top = 184
         Width = 54
         Caption = 'Categoria:'
         ParentColor = False
@@ -208,7 +248,7 @@ object frmEquipamentos: TfrmEquipamentos
       object Label6: TLabel
         Left = 184
         Height = 15
-        Top = 64
+        Top = 59
         Width = 51
         Caption = 'Nro Serie:'
         ParentColor = False
@@ -216,45 +256,66 @@ object frmEquipamentos: TfrmEquipamentos
       object DBEdit1: TDBEdit
         Left = 182
         Height = 23
-        Top = 77
+        Top = 72
         Width = 80
         DataField = 'nroserie'
         DataSource = DataSource1
         CharCase = ecNormal
-        MaxLength = 20
-        TabOrder = 5
+        MaxLength = 0
+        TabOrder = 2
       end
-      object Button1: TButton
+      object btSalvar: TButton
         Left = 360
         Height = 25
         Top = 240
         Width = 75
         Caption = 'Salvar'
-        OnClick = Button1Click
+        OnClick = btSalvarClick
+        TabOrder = 7
+      end
+      object Label7: TLabel
+        Left = 8
+        Height = 15
+        Top = 59
+        Width = 54
+        Caption = 'Descrição:'
+        ParentColor = False
+      end
+      object DBEdit2: TDBEdit
+        Left = 6
+        Height = 23
+        Top = 72
+        Width = 168
+        DataField = 'descricao'
+        DataSource = DataSource1
+        CharCase = ecNormal
+        MaxLength = 0
+        TabOrder = 1
+      end
+      object btCancelar: TButton
+        Left = 272
+        Height = 25
+        Top = 240
+        Width = 75
+        Caption = 'Cancelar'
+        OnClick = btCancelarClick
         TabOrder = 6
       end
     end
   end
-  object Button2: TButton
-    Left = 272
-    Height = 25
-    Top = 264
-    Width = 75
-    Caption = 'Cancelar'
-    TabOrder = 1
-  end
   object DataSource1: TDataSource
     DataSet = SQLQuery1
     OnStateChange = DataSource1StateChange
-    left = 368
-    top = 48
+    left = 376
+    top = 208
   end
   object SQLQuery1: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
+    PacketRecords = -1
+    IndexFieldNames = 'idcadmaq'
     FieldDefs = <    
       item
         Name = 'idcadmaq'
-        DataType = ftInteger
+        DataType = ftAutoInc
         Precision = -1
       end    
       item
@@ -268,12 +329,17 @@ object frmEquipamentos: TfrmEquipamentos
         Precision = -1
       end    
       item
+        Name = 'idfabricante'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
         Name = 'idmodelo'
         DataType = ftInteger
         Precision = -1
       end    
       item
-        Name = 'idfabricante'
+        Name = 'idcategoria'
         DataType = ftInteger
         Precision = -1
       end    
@@ -284,79 +350,50 @@ object frmEquipamentos: TfrmEquipamentos
         Size = 20
       end    
       item
-        Name = 'idcategoria'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'idcategoria_1'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
         Name = 'descricao'
-        DataType = ftString
-        Precision = -1
-        Size = 255
-      end    
-      item
-        Name = 'idmodelo_1'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'modelo'
-        DataType = ftFixedChar
-        Precision = -1
-        Size = 20
-      end    
-      item
-        Name = 'idfabricante_1'
-        DataType = ftInteger
-        Precision = -1
-      end    
-      item
-        Name = 'fabricante'
         DataType = ftFixedChar
         Precision = -1
         Size = 20
       end>
-    Active = True
+    AfterRefresh = SQLQuery1AfterRefresh
+    BeforeRefresh = SQLQuery1BeforeRefresh
     Database = frmmain.SQLite3Connection1
     Transaction = frmmain.SQLTransaction1
     SQL.Strings = (
-      'select *'
+      'select cadmaq.*'
       'from cadmaq'
-      'left outer join categoria on categoria.idcategoria = cadmaq.idcategoria'
-      'left outer join modelo on modelo.idmodelo = cadmaq.idmodelo'
-      'left outer join fabricante on fabricante.idfabricante = cadmaq.idfabricante'
       ''
     )
     InsertSQL.Strings = (
       'insert into cadmaq'
-      '( dtentrada, dtsaida, idmodelo, idfabricante,nroserie, idcategoria)'
+      '(idcadmaq, descricao,nroserie, dtentrada,  idmodelo, idfabricante, idcategoria )'
       'values'
-      '( :dtentrada, :dtsaida, :idmodelo, :idfabricante, :nroserie, :idcategoria)'
+      '(:idcadmaq , :descricao,:nroserie, :dtentrada, :idmodelo, :idfabricante,  :idcategoria )'
     )
     UpdateSQL.Strings = (
       ' update cadmaq'
-      ' set  dtentrada = :dtentrada,'
+      ' set  descricao = :descricao'
+      '      dtentrada = :dtentrada,'
       '      dtsaida = :dtsaida,'
       '      idmodelo = :idmodelo,'
       '      idfabricante = :idfabricante,'
       '      nroserie = :nroserie,'
       '      idcategoria = :idcategoria'
-      ' where idcadmaq = :idcadmaq'
+      ' where idcadmaq = :OLD_idcadmaq'
       ''
     )
     DeleteSQL.Strings = (
-      'delete from cadmaq where idcadmaq = :idcadmaq'
+      'delete from cadmaq where idcadmaq = :OLD_idcadmaq'
       ''
     )
+    RefreshSQL.Strings = (
+      'select * from cadmaq where idcadmaq = :idcadmaq'
+    )
     Params = <>
-    left = 368
-    top = 104
-    object SQLQuery1idcadmaq: TLongintField
+    UpdateMode = upWhereAll
+    left = 376
+    top = 264
+    object SQLQuery1idcadmaq: TAutoIncField
       FieldKind = fkData
       FieldName = 'idcadmaq'
       Index = 0
@@ -383,19 +420,28 @@ object frmEquipamentos: TfrmEquipamentos
       ReadOnly = False
       Required = False
     end
-    object SQLQuery1idmodelo: TLongintField
+    object SQLQuery1idfabricante: TLongintField
       FieldKind = fkData
-      FieldName = 'idmodelo'
+      FieldName = 'idfabricante'
       Index = 3
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
     end
-    object SQLQuery1idfabricante: TLongintField
+    object SQLQuery1idmodelo: TLongintField
       FieldKind = fkData
-      FieldName = 'idfabricante'
+      FieldName = 'idmodelo'
       Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object SQLQuery1idcategoria: TLongintField
+      FieldKind = fkData
+      FieldName = 'idcategoria'
+      Index = 5
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -404,25 +450,7 @@ object frmEquipamentos: TfrmEquipamentos
     object SQLQuery1nroserie: TStringField
       FieldKind = fkData
       FieldName = 'nroserie'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object SQLQuery1idcategoria: TLongintField
-      FieldKind = fkData
-      FieldName = 'idcategoria'
       Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = True
-    end
-    object SQLQuery1idcategoria_1: TLongintField
-      FieldKind = fkData
-      FieldName = 'idcategoria_1'
-      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -431,57 +459,19 @@ object frmEquipamentos: TfrmEquipamentos
     object SQLQuery1descricao: TStringField
       FieldKind = fkData
       FieldName = 'descricao'
-      Index = 8
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = True
-      Size = 255
-    end
-    object SQLQuery1idmodelo_1: TLongintField
-      FieldKind = fkData
-      FieldName = 'idmodelo_1'
-      Index = 9
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object SQLQuery1modelo: TStringField
-      FieldKind = fkData
-      FieldName = 'modelo'
-      Index = 10
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object SQLQuery1idfabricante_1: TLongintField
-      FieldKind = fkData
-      FieldName = 'idfabricante_1'
-      Index = 11
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object SQLQuery1fabricante: TStringField
-      FieldKind = fkData
-      FieldName = 'fabricante'
-      Index = 12
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
     end
   end
   object dsmodelo: TDataSource
     DataSet = qryModelo
     left = 226
-    top = 94
+    top = 184
   end
   object qryModelo: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
     FieldDefs = <    
       item
         Name = 'idmodelo'
@@ -494,16 +484,16 @@ object frmEquipamentos: TfrmEquipamentos
         Precision = -1
         Size = 20
       end>
-    Active = True
     Database = frmmain.SQLite3Connection1
     Transaction = frmmain.SQLTransaction1
     SQL.Strings = (
       'select * from modelo'
     )
+    Options = [sqoAutoApplyUpdates, sqoAutoCommit, sqoRefreshUsingSelect]
     Params = <>
     DataSource = DataSource1
     left = 274
-    top = 94
+    top = 184
   end
   object qryFabricante: TSQLQuery
     FieldDefs = <    
@@ -526,12 +516,12 @@ object frmEquipamentos: TfrmEquipamentos
     Params = <>
     DataSource = DataSource1
     left = 274
-    top = 144
+    top = 234
   end
   object dsfabricante: TDataSource
     DataSet = qryFabricante
     left = 226
-    top = 144
+    top = 234
   end
   object qrycategoria: TSQLQuery
     FieldDefs = <    
@@ -554,11 +544,78 @@ object frmEquipamentos: TfrmEquipamentos
     Params = <>
     DataSource = DataSource1
     left = 272
-    top = 200
+    top = 290
   end
   object dscategoria: TDataSource
     DataSet = qrycategoria
     left = 224
+    top = 290
+  end
+  object qryaux: TSQLQuery
+    FieldDefs = <>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    Params = <>
+    left = 432
     top = 200
+  end
+  object qrypcategoria: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'idcategoria'
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'descricao'
+        DataType = ftFixedChar
+        Precision = -1
+        Size = 20
+      end>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    ReadOnly = True
+    SQL.Strings = (
+      'select * from categoria order by descricao;'
+    )
+    Params = <>
+    left = 64
+    top = 88
+  end
+  object dspcategoria: TDataSource
+    DataSet = qrypcategoria
+    OnStateChange = DataSource1StateChange
+    left = 24
+    top = 88
+  end
+  object dspfabricante: TDataSource
+    DataSet = qrypfabricante
+    OnStateChange = DataSource1StateChange
+    left = 176
+    top = 88
+  end
+  object qrypfabricante: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'idfabricante'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'fabricante'
+        DataType = ftFixedChar
+        Precision = -1
+        Size = 20
+      end>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    ReadOnly = True
+    SQL.Strings = (
+      'select * from fabricante order by fabricante;'
+    )
+    Params = <>
+    left = 216
+    top = 88
   end
 end

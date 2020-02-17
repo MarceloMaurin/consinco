@@ -1,4 +1,4 @@
-create table fabricante (
-	idfabricante int primary key  ,
-	fabricante char(20)	
+CREATE TABLE "fabricante" (
+	"idfabricante"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"fabricante"	char(20)
 );

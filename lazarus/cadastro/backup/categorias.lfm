@@ -2,11 +2,12 @@ object frmCategorias: TfrmCategorias
   Left = 513
   Height = 240
   Top = 280
-  Width = 320
+  Width = 414
   Caption = 'Categorias'
   ClientHeight = 240
-  ClientWidth = 320
+  ClientWidth = 414
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   LCLVersion = '2.0.6.0'
   object DBNavigator1: TDBNavigator
     Left = 24
@@ -25,7 +26,7 @@ object frmCategorias: TfrmCategorias
     DataSource = DataSource1
     Options = []
     TabOrder = 0
-    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbDelete, nbPost, nbCancel]
   end
   object DBGrid1: TDBGrid
     Left = 8
@@ -45,8 +46,27 @@ object frmCategorias: TfrmCategorias
     DataSource = DataSource1
     TabOrder = 1
   end
+  object btInsere: TButton
+    Left = 320
+    Height = 25
+    Top = 48
+    Width = 75
+    Caption = 'Inserir'
+    OnClick = btInsereClick
+    TabOrder = 2
+  end
+  object btEdita: TButton
+    Left = 321
+    Height = 25
+    Top = 84
+    Width = 75
+    Caption = 'Editar'
+    OnClick = btEditaClick
+    TabOrder = 3
+  end
   object SQLQuery1: TSQLQuery
-    IndexName = 'DEFAULT_ORDER'
+    PacketRecords = -1
+    IndexFieldNames = 'idcategoria'
     FieldDefs = <    
       item
         Name = 'idcategoria'
@@ -59,6 +79,7 @@ object frmCategorias: TfrmCategorias
         Precision = -1
         Size = 255
       end>
+    BeforePost = SQLQuery1BeforePost
     Database = frmmain.SQLite3Connection1
     Transaction = frmmain.SQLTransaction1
     SQL.Strings = (
@@ -74,7 +95,7 @@ object frmCategorias: TfrmCategorias
       'delete from categoria where idcategoria = :idcategoria'
     )
     RefreshSQL.Strings = (
-      'select * from modelo'
+      'select * from categoria where idcategoria = :idcategoria'
     )
     Params = <>
     UpdateMode = upWhereAll
@@ -85,5 +106,13 @@ object frmCategorias: TfrmCategorias
     DataSet = SQLQuery1
     left = 148
     top = 116
+  end
+  object qryaux: TSQLQuery
+    FieldDefs = <>
+    Database = frmmain.SQLite3Connection1
+    Transaction = frmmain.SQLTransaction1
+    Params = <>
+    left = 273
+    top = 172
   end
 end

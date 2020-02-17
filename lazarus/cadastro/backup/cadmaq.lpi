@@ -26,15 +26,21 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="4">
       <Item1>
-        <PackageName Value="FCL"/>
+        <PackageName Value="fortes324forlaz"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="zcomponent"/>
       </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="LCL"/>
+      </Item4>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="8">
       <Unit0>
         <Filename Value="cadmaq.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -43,6 +49,7 @@
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmmain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
@@ -56,20 +63,38 @@
         <Filename Value="fabricantes.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmFabricantes"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit3>
       <Unit4>
         <Filename Value="categorias.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmCategorias"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit4>
       <Unit5>
         <Filename Value="equipamentos.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmEquipamentos"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="rcategoria.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmRCategoria"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="RCategoria"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="rcadmaq.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmRCadmaq"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="RCadmaq"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
